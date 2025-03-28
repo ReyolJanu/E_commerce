@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Wireless Headphones",
+    "price": 199.99,
+    "description": "High-quality wireless headphones with noise cancellation.",
+    "rating": 4.5,
+    "images": [
+      {
+        "image": "https://example.com/images/headphone1.jpg"
+      },
+      {
+        "image": "https://example.com/images/headphone2.jpg"
+      }
+    ],
+    "category": "Headphones",
+    "seller": "Best Electronics",
+    "stock": 50,
+    "numOfReviews": 10,
+    "reviews": [
+      {
+        "name": "John Doe",
+        "rating": 5,
+        "comment": "Excellent sound quality and battery life!"
+      },
+      {
+        "name": "Jane Smith",
+        "rating": 4,
+        "comment": "Very comfortable, but a bit pricey."
+      }
+    ]
+  },
+  {
+    "name": "Gaming Laptop",
+    "price": 1299.99,
+    "description": "High-performance gaming laptop with 16GB RAM and RTX 3070 GPU.",
+    "rating": 4.8,
+    "images": [
+      {
+        "image": "https://example.com/images/laptop1.jpg"
+      },
+      {
+        "image": "https://example.com/images/laptop2.jpg"
+      }
+    ],
+    "category": "Laptops",
+    "seller": "TechWorld",
+    "stock": 25,
+    "numOfReviews": 120,
+    "reviews": [
+      {
+        "name": "Alice Green",
+        "rating": 5,
+        "comment": "Best laptop for gaming! Smooth performance and great build quality."
+      },
+      {
+        "name": "Michael Brown",
+        "rating": 4.5,
+        "comment": "Amazing specs, but a bit heavy."
+      }
+    ]
+  },
+  {
+    "name": "Smartphone X",
+    "price": 999.99,
+    "description": "Latest smartphone with a 6.5-inch display, 5G support, and a 108MP camera.",
+    "rating": 4.7,
+    "images": [
+      {
+        "image": "https://example.com/images/smartphone1.jpg"
+      }
+    ],
+    "category": "Mobilephones",
+    "seller": "SmartTech",
+    "stock": 100,
+    "numOfReviews": 85,
+    "reviews": [
+      {
+        "name": "David Lee",
+        "rating": 4.8,
+        "comment": "Super fast and the camera quality is unbelievable."
+      },
+      {
+        "name": "Emma White",
+        "rating": 4.6,
+        "comment": "Battery life could be better, but overall a fantastic phone."
+      }
+    ]
+  },
+  {
+    "name": "Wireless Earbuds Pro",
+    "price": 149.99,
+    "description": "Noise-canceling wireless earbuds with 24-hour battery life.",
+    "rating": 4.3,
+    "images": [
+      {
+        "image": "https://example.com/images/earbuds1.jpg"
+      }
+    ],
+    "category": "Accessories",
+    "seller": "AudioPro",
+    "stock": 60,
+    "numOfReviews": 230,
+    "reviews": [
+      {
+        "name": "Sarah Johnson",
+        "rating": 5,
+        "comment": "Comfortable fit and excellent sound quality!"
+      },
+      {
+        "name": "Liam Martin",
+        "rating": 4,
+        "comment": "Great earbuds, but the charging case could be more durable."
+      }
+    ]
+  },
+  {
+    "name": "Ultra Running Shoes",
+    "price": 89.99,
+    "description": "Lightweight and comfortable running shoes designed for long-distance running.",
+    "rating": 4.4,
+    "images": [
+      {
+        "image": "https://example.com/images/shoes1.jpg"
+      },
+      {
+        "image": "https://example.com/images/shoes2.jpg"
+      }
+    ],
+    "category": "Clothes/Shoes",
+    "seller": "SportyFeet",
+    "stock": 150,
+    "numOfReviews": 450,
+    "reviews": [
+      {
+        "name": "Noah Miller",
+        "rating": 4.7,
+        "comment": "Super comfortable and great for running marathons."
+      },
+      {
+        "name": "Sophia Garcia",
+        "rating": 4.2,
+        "comment": "Great shoes, but the sizing runs a bit small."
+      }
+    ]
+  }
+]
