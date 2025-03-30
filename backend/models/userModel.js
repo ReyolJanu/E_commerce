@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema({
     resetPasswordTokenExpire: Date,
     createdAt: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now()
+    } 
 });
 
 // Pre-save middleware to hash password before saving

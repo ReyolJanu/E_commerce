@@ -11,7 +11,7 @@ exports.getProducts = async (req, res, next) => {
         success: true,
         count : products.length,
         products
-    });
+     });
 };
 
 
@@ -31,16 +31,15 @@ exports.newProduct = async (req, res, next) => {
 
 
 
-// Get Single Product - {{base_url}}/api/v1/product/:id
+// Get Single Product - {{base_url}}/api/v1/product/id
 exports.getSingleProduct = async (req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
         return next(new ErrorHandler('Product Not Found!', 404));  // Return a 404 error if the product is not found
     }
-
     // If product is found, return it
-    res.status(200).json({
+    res.status(201).json({
         success: true,
         product
     });
@@ -48,7 +47,7 @@ exports.getSingleProduct = async (req, res, next) => {
 
 
 
-//Update Product  - {{base_url}}/api/v1/product/:id
+//Update Product  - {{base_url}}/api/v1/product/id
 exports.updateProduct = async (req, res, next) => {
     let product = await Product.findById(req.params.id);
     if (!product) {
@@ -61,14 +60,14 @@ exports.updateProduct = async (req, res, next) => {
     new: true,  // update pannuna piraku palaya product aa return pannama update aakuna puthu product aa return pannanum endathuku use pannuram
     runValidators: true   //puthusa kudukira user inputs ellame required field aa validate pannutha endu check pannura code
   })
-  res.status(201).json({
+  res.status(200).json({
     success : true,
     product
   })
 }
 
 
-// Delete Product - {{base_url}}/api/v1/product/:id
+// Delete Product - {{base_url}}/api/v1/product/id
 exports.deleteProduct = async (req, res, next) => {
     const product = await Product.findById(req.params.id);
   

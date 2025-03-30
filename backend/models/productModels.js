@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
         type: Number, // Should be a number for ratings
         default: 0
     },
-    images: [
+    images: [  // this bracket [] reason for we can store multiple images for a one product so aray value
         {
             image: {
                 type: String,
@@ -79,7 +79,7 @@ const productSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 });
 
