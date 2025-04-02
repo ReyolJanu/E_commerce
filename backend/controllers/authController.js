@@ -71,7 +71,7 @@ exports.forgotPassword = async (req, res, next) => {
    const resetToken = user.getResetToken();
    user.save({validateBeforeSave: false});
    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
-   const message = `Your password Reset url isa as follows \n\n
+   const message = `Your password Reset url is as follows \n\n
                     ${resetUrl}`;
 
    try{
@@ -106,7 +106,7 @@ exports.resetPassword = async (req, res, next) => {
     })
 
     if(!user){
-        return next(new ErrorHandler('Password reset token is invalid or expired'));
+        return next(new ErrorHandler('Password reset token is invalid or expired!'));
     }
 
     if(req.body.password !== req.body.confirmPassword){
@@ -141,7 +141,7 @@ exports.changePassword = async (req, res, next) => {
     user.password = req.body.password;
     await user.save();
     res.status(200).json({
-        success : true 
+        success : true
     })
 }
 

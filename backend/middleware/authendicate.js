@@ -19,9 +19,8 @@ exports.isAuthendicateUser = async (req, res, next) =>{
 exports.authorizeRoles = (...roles) => {
    return (req, res, next) => {
       if(!roles.includes(req.user.role)){
-         return next(new ErrorHandler(`Role ${req.user.role} is not Allowed!`, 401));
+         return next(new ErrorHandler(`Role ${req.user.role} is not Allowed for this opparations!`, 401));
       }
       next();
-
    }
 }
