@@ -87,7 +87,7 @@ exports.deleteProduct = async (req, res, next) => {
   };
   
 
-  // Add Review -- {{base_url}}/api/v1/review
+  // Create Review -- {{base_url}}/api/v1/review
 exports.createReview = async (req, res, next) => {
   try {
     const { productId, rating, comment } = req.body;
@@ -152,26 +152,42 @@ exports.getReviews = async (req, res, next) => {
   })
 }
 
-// Delete Review
+// Get Reviews --  {{base_url}}/api/v1/review?id=67ed50073648bed3b2deabdd&productId=67e767df82b93338ca5e9e74
 exports.deleteReviews = async (req, res, next) => {
-  const product = await Product.findById(req.query.productId);
+  try {
+    const { productId, id } = req.query;  // Extract productId and review id from query
 
-  // Filtering the reviews which does match the deletind review id
-  const reviews = product.reviews.filter(review => {
-   return review._id.toString() !== req.query.id.toString();
-  })
+    // Find the product
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
 
-  const numberOfReviews = reviews.length;
-  let ratings = product.reviews.reduce((acc, review) => acc + review.rating, 0) / product.reviews.length;
-  ratings = isNaN(ratings)?0:ratings;
+    // Filter out the review that matches the id provided in the query
+    const reviews = product.reviews.filter(review => review._id.toString() !== id.toString());
 
-  await Product.findByIdAndUpdate(req.query.productId, {
-    reviews,
-    numberOfReviews,
-    ratings
-  })
+    // Recalculate number of reviews
+    const numberOfReviews = reviews.length;
 
-  res.status(200).json({
-    success : true
-  })
-}
+    // Calculate the new average rating if reviews are left, otherwise set it to 0
+    let ratings = 0;
+    if (numberOfReviews > 0) {
+      ratings = reviews.reduce((acc, review) => acc + review.rating, 0) / numberOfReviews;
+    }
+
+    // Update the product document
+    await Product.findByIdAndUpdate(productId, {
+      reviews,
+      numOfReviews: numberOfReviews,  // Update numberOfReviews field correctly
+      rating: ratings  // Update the rating field
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Review deleted successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
