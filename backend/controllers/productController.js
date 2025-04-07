@@ -4,13 +4,16 @@ const APIFeatures = require('../utils/apiFeatures');
 
 // get Product -  {{base_url}}/api/v1/products
 exports.getProducts = async (req, res, next) => {
-    const resPerPage = 2;
+    const resPerPage =3;
     const apiFeactures =  new APIFeatures(Product.find(), req.query).search().filter().paginate(resPerPage);
     const products = await apiFeactures.query;
+    const totalProductsCount = await Product.countDocuments({}); // counting totao records in DB
+    // await new Promise(resolve => setTimeout(resolve, 1000)) // 1 seconds loading time
     res.status(200).json({
         success: true,
-        count : products.length,
-        products,
+        count : totalProductsCount,
+        resPerPage,
+        products
      });
 };
 
