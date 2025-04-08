@@ -19,7 +19,7 @@ export default function Home() {
     if (error) {
       return toast.error(error);
     }
-    dispatch(getProducts(currentPage));
+    dispatch(getProducts(null, null,null,null, currentPage));
   }, [error, dispatch, currentPage])
 
   return (
