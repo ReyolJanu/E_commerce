@@ -4,14 +4,7 @@
     "price": 199.99,
     "description": "High-quality wireless headphones with noise cancellation.",
     "rating": 4.5,
-    "images": [
-      {
-        "image": "/images/products/3.jpg"
-      },
-      {
-        "image": "/images/products/3.jpg"
-      }
-    ],
+    "images": [{ "image": "/images/products/3.jpg" }],
     "category": "Headphones",
     "seller": "Best Electronics",
     "stock": 50,
@@ -21,11 +14,6 @@
         "name": "John Doe",
         "rating": 5,
         "comment": "Excellent sound quality and battery life!"
-      },
-      {
-        "name": "Jane Smith",
-        "rating": 4,
-        "comment": "Very comfortable, but a bit pricey."
       }
     ]
   },
@@ -34,14 +22,7 @@
     "price": 1299.99,
     "description": "High-performance gaming laptop with 16GB RAM and RTX 3070 GPU.",
     "rating": 4.8,
-    "images": [
-      {
-        "image": "/images/products/3.jpg"
-      },
-      {
-        "image": "/images/products/3.jpg"
-      }
-    ],
+    "images": [{ "image": "/images/products/3.jpg" }],
     "category": "Laptops",
     "seller": "TechWorld",
     "stock": 25,
@@ -50,12 +31,7 @@
       {
         "name": "Alice Green",
         "rating": 5,
-        "comment": "Best laptop for gaming! Smooth performance and great build quality."
-      },
-      {
-        "name": "Michael Brown",
-        "rating": 4.5,
-        "comment": "Amazing specs, but a bit heavy."
+        "comment": "Best laptop for gaming!"
       }
     ]
   },
@@ -64,11 +40,7 @@
     "price": 999.99,
     "description": "Latest smartphone with a 6.5-inch display, 5G support, and a 108MP camera.",
     "rating": 4.7,
-    "images": [
-      {
-        "image": "/images/products/3.jpg"
-      }
-    ],
+    "images": [{ "image": "/images/products/3.jpg" }],
     "category": "Mobilephones",
     "seller": "SmartTech",
     "stock": 100,
@@ -77,282 +49,44 @@
       {
         "name": "David Lee",
         "rating": 4.8,
-        "comment": "Super fast and the camera quality is unbelievable."
-      },
-      {
-        "name": "Emma White",
-        "rating": 4.6,
-        "comment": "Battery life could be better, but overall a fantastic phone."
+        "comment": "Super fast and great camera."
       }
     ]
   },
   {
-    "name": "Wireless Earbuds Pro",
-    "price": 149.99,
-    "description": "Noise-canceling wireless earbuds with 24-hour battery life.",
-    "rating": 4.3,
-    "images": [
-      {
-        "image": "/images/products/3.jpg"
-      }
-    ],
-    "category": "Accessories",
-    "seller": "AudioPro",
-    "stock": 60,
-    "numOfReviews": 230,
+    "name": "UltraBook Pro 15",
+    "price": 999.99,
+    "description": "Slim and powerful ultrabook with Intel i7, 16GB RAM, and 512GB SSD.",
+    "rating": 4.5,
+    "images": [{ "image": "/images/products/1.jpg" }],
+    "category": "Laptops",
+    "seller": "SmartTech",
+    "stock": 15,
+    "numOfReviews": 80,
     "reviews": [
       {
-        "name": "Sarah Johnson",
+        "name": "John Doe",
+        "rating": 4.5,
+        "comment": "Perfect for travel."
+      }
+    ]
+  },
+  {
+    "name": "MacBook Air M2",
+    "price": 1199.00,
+    "description": "Apple MacBook Air with M2 chip, 8-core GPU, and 256GB SSD.",
+    "rating": 4.9,
+    "images": [{ "image": "/images/products/4.jpg" }],
+    "category": "Laptops",
+    "seller": "Apple Store",
+    "stock": 30,
+    "numOfReviews": 200,
+    "reviews": [
+      {
+        "name": "Sophia Chan",
         "rating": 5,
-        "comment": "Comfortable fit and excellent sound quality!"
-      },
-      {
-        "name": "Liam Martin",
-        "rating": 4,
-        "comment": "Great earbuds, but the charging case could be more durable."
+        "comment": "Battery lasts all day!"
       }
     ]
-  },
-  {
-    "name": "Ultra Running Shoes",
-    "price": 89.99,
-    "description": "Lightweight and comfortable running shoes designed for long-distance running.",
-    "rating": 4.4,
-    "images": [
-      {
-        "image": "/images/products/3.jpg"
-      },
-      {
-        "image": "/images/products/3.jpg"
-      }
-    ],
-    "category": "Clothes/Shoes",
-    "seller": "SportyFeet",
-    "stock": 150,
-    "numOfReviews": 450,
-    "reviews": [
-      {
-        "name": "Noah Miller",
-        "rating": 4.7,
-        "comment": "Super comfortable and great for running marathons."
-      },
-      {
-        "name": "Sophia Garcia",
-        "rating": 4.2,
-        "comment": "Great shoes, but the sizing runs a bit small."
-      }
-    ]
-  },
-  [
-    {
-      "name": "UltraBook Pro 15",
-      "price": 999.99,
-      "description": "Slim and powerful ultrabook with Intel i7, 16GB RAM, and 512GB SSD.",
-      "rating": 4.5,
-      "images": [
-        { "image": "/images/products/1.jpg" },
-        { "image": "/images/products/1.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "SmartTech",
-      "stock": 15,
-      "numOfReviews": 80,
-      "reviews": [
-        {
-          "name": "John Doe",
-          "rating": 4.5,
-          "comment": "Super lightweight and fast. Perfect for travel."
-        }
-      ]
-    },
-    {
-      "name": "ZenBook Pro Duo",
-      "price": 1899.49,
-      "description": "Dual-screen productivity laptop with 32GB RAM and 1TB SSD.",
-      "rating": 4.7,
-      "images": [
-        { "image": "/images/products/2.jpg" },
-        { "image": "/images/products/2.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "ZenTech",
-      "stock": 10,
-      "numOfReviews": 65,
-      "reviews": [
-        {
-          "name": "Emily Stone",
-          "rating": 4.8,
-          "comment": "Game changer for multitasking!"
-        }
-      ]
-    },
-    {
-      "name": "ThinkPad X1 Carbon",
-      "price": 1399.99,
-      "description": "Business laptop with carbon-fiber build, 14-inch display, and 16GB RAM.",
-      "rating": 4.6,
-      "images": [
-        { "image": "/images/products/3.jpg" },
-        { "image": "/images/products/3.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "Lenovo Store",
-      "stock": 20,
-      "numOfReviews": 102,
-      "reviews": [
-        {
-          "name": "Peter Lee",
-          "rating": 4.6,
-          "comment": "Solid and reliable for daily office use."
-        }
-      ]
-    },
-    {
-      "name": "MacBook Air M2",
-      "price": 1199.00,
-      "description": "Apple MacBook Air with M2 chip, 8-core GPU, and 256GB SSD.",
-      "rating": 4.9,
-      "images": [
-        { "image": "/images/products/4.jpg" },
-        { "image": "/images/products/4.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "Apple Store",
-      "stock": 30,
-      "numOfReviews": 200,
-      "reviews": [
-        {
-          "name": "Sophia Chan",
-          "rating": 5,
-          "comment": "Sleek and incredibly fast. Battery lasts all day!"
-        }
-      ]
-    },
-    {
-      "name": "Acer Nitro 5",
-      "price": 849.99,
-      "description": "Budget gaming laptop with Ryzen 5, GTX 1650, and 8GB RAM.",
-      "rating": 4.2,
-      "images": [
-        { "image": "/images/products/5.jpg" },
-        { "image": "/images/products/5.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "Acer Official",
-      "stock": 50,
-      "numOfReviews": 90,
-      "reviews": [
-        {
-          "name": "David Miller",
-          "rating": 4.3,
-          "comment": "Great performance for the price!"
-        }
-      ]
-    },
-    {
-      "name": "HP Spectre x360",
-      "price": 1299.00,
-      "description": "2-in-1 touchscreen laptop with Intel i7 and 1TB SSD.",
-      "rating": 4.4,
-      "images": [
-        { "image": "/images/products/6.jpg" },
-        { "image": "/images/products/6.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "HP World",
-      "stock": 18,
-      "numOfReviews": 74,
-      "reviews": [
-        {
-          "name": "Nina Hart",
-          "rating": 4.5,
-          "comment": "Versatile and stylish. Touchscreen is very responsive."
-        }
-      ]
-    },
-    {
-      "name": "Dell XPS 13 Plus",
-      "price": 1349.99,
-      "description": "Edge-to-edge display, 16GB RAM, Intel Evo i7, and 512GB SSD.",
-      "rating": 4.8,
-      "images": [
-        { "image": "/images/products/7.jpg" },
-        { "image": "/images/products/7.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "Dell Express",
-      "stock": 22,
-      "numOfReviews": 91,
-      "reviews": [
-        {
-          "name": "Olivia Brooks",
-          "rating": 4.9,
-          "comment": "One of the most premium laptops out there!"
-        }
-      ]
-    },
-    {
-      "name": "MSI Stealth 15M",
-      "price": 1599.95,
-      "description": "Portable gaming laptop with RTX 3060, Intel i7, and 144Hz screen.",
-      "rating": 4.6,
-      "images": [
-        { "image": "/images/products/8.jpg" },
-        { "image": "/images/products/8.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "MSI Store",
-      "stock": 12,
-      "numOfReviews": 60,
-      "reviews": [
-        {
-          "name": "George Kim",
-          "rating": 4.7,
-          "comment": "Fast, smooth, and very thin for a gaming laptop."
-        }
-      ]
-    },
-    {
-      "name": "ASUS ROG Zephyrus G14",
-      "price": 1749.00,
-      "description": "Power-packed gaming machine with AMD Ryzen 9 and RTX 3060.",
-      "rating": 4.9,
-      "images": [
-        { "image": "/images/products/9.jpg" },
-        { "image": "/images/products/9.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "ASUS Official",
-      "stock": 8,
-      "numOfReviews": 77,
-      "reviews": [
-        {
-          "name": "Lucas Ray",
-          "rating": 5,
-          "comment": "Absolute beast for gamers and creators!"
-        }
-      ]
-    },
-    {
-      "name": "Microsoft Surface Laptop 5",
-      "price": 1149.00,
-      "description": "Elegant design with touchscreen, 16GB RAM and 512GB SSD.",
-      "rating": 4.5,
-      "images": [
-        { "image": "/images/products/10.jpg" },
-        { "image": "/images/products/10.jpg" }
-      ],
-      "category": "Laptops",
-      "seller": "Microsoft Store",
-      "stock": 17,
-      "numOfReviews": 54,
-      "reviews": [
-        {
-          "name": "Isabella White",
-          "rating": 4.4,
-          "comment": "Feels luxurious and super quiet."
-        }
-      ]
-    }
-  ]  
+  }
 ]

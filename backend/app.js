@@ -6,11 +6,13 @@ const products = require('./routes/product');
 const auth = require('./routes/auth');
 const order = require('./routes/order');
 const cors = require('cors');
+const path = require('path')
 
 
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 app.use('/api/v1/', products); // The correct route prefix
 app.use('/api/v1/', auth);

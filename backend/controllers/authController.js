@@ -7,16 +7,28 @@ const ErrorHandler = require('../utils/errorHandler');
 
 // Register  -  {{base_url}}/api/v1/register
 exports.registerUser = async (req, res, next) => {
-    const {name, email, password, avatar} = req.body;
-    const user = await User.create({
-        name,
-        email,
-        password,
-        avatar
-    });
+    const { name, email, password} = req.body;
+    let avatar;
+    if(req.file){
+        avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`; 
+    }
 
-    sendToken(user, 201, res);
-}
+    try {
+        const user = await User.create({
+            name,
+            email,
+            password,
+            avatar
+        });
+        sendToken(user, 201, res);  // Send token on successful creation
+    } catch (error) {
+        // If there's a validation error, return it in the response
+        return res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
 
 
 // Login  --  {{base_url}}/api/v1/login

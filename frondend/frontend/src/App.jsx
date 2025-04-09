@@ -6,8 +6,17 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'
 import ProductDetail from "./components/product/ProductDetail";
 import ProductSearch from "./components/product/ProductSearch";
+import Login from "./components/user/login";
+import Register from "./components/user/Register";
+import { useEffect } from "react";
+import store from './store'
+import { loadUser } from "./actions/userActions";
 
 function App() {
+
+  useEffect(()=>{
+    store.dispatch(loadUser)
+  })
 
   return (
     <Router>
@@ -20,6 +29,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/search/:keyword' element={<ProductSearch />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
 
         </div>

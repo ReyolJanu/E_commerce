@@ -45,7 +45,7 @@ export default function ProductSearch() {
     if (error) {
       return toast.error(error);
     }
-    dispatch(getProducts(keyword, price, category, rating, currentPage));
+    dispatch(getProducts(keyword, priceChanged, category, rating, currentPage));
   }, [error, dispatch, currentPage, keyword, priceChanged, category, rating])
 
   return (
