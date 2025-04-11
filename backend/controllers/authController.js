@@ -82,7 +82,7 @@ exports.forgotPassword = async (req, res, next) => {
    }
    const resetToken = user.getResetToken();
    user.save({validateBeforeSave: false});
-   const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+   const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
    const message = `Your password Reset url is as follows \n\n
                     ${resetUrl}`;
 
