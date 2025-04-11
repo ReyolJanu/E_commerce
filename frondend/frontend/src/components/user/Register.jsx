@@ -53,8 +53,9 @@ function Register() {
         if (error) {
             toast(error, {
                 type: 'error',
-                onOpen: () => { dispatch(clearAuthError()) }
+                onOpen: () => { dispatch(clearAuthError) }
             })
+            return
         }
     }, [error])
 

@@ -160,10 +160,18 @@ exports.changePassword = async (req, res, next) => {
 
 //  Update-Profile  --  {{base_url}}/api/v1/update
 exports.updatePassword = async (req, res, next) => {
-    const newUserData = {
+    let newUserData = {
         name : req.body.name,
         email : req.body.email
     }
+
+    let avatar;
+    if(req.file){
+        avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`; 
+        newUserData ={...newUserData, avatar}
+    }
+
+
     const user =  await User.findByIdAndUpdate(req.user.id, newUserData, {
         new : true,
         runValidators : true
