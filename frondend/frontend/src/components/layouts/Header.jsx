@@ -15,6 +15,9 @@ export default function Header() {
   }
 
   const { isAuthenticated, user } = useSelector(state => state.authState);
+  const { items:cartItems } = useSelector(state => state.cartState);
+
+
   return (
     <div className="App">
       <nav className="navbar row">
@@ -50,11 +53,12 @@ export default function Header() {
               <button className="btn" id="login_btn">Login</button>
             </Link>
           )}
-
+          <Link to="/cart">
           <div className="d-flex align-items-center gap-2">
             <span id="cart">Cart</span>
-            <span id="cart_count">2</span>
+            <span id="cart_count">{cartItems.length}</span>
           </div>
+          </Link>
 
         </div>
 

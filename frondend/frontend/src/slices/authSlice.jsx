@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        loading: false,
+        loading: true,
         isAuthenticated: false
     },
     reducers: {
@@ -71,8 +71,7 @@ const authSlice = createSlice({
         loadUserFail(state, action) {
             return {
                 ...state,
-                loading: false,
-                error: action.payload
+                loading: false
             }
         },
         logoutSuccess(state, action) {
@@ -107,6 +106,12 @@ const authSlice = createSlice({
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        },
+        clearUpdateProfile(state, action) {
+            return {
+                ...state,
+                isUpdated:false
             }
         },
         updatePasswordRequest(state, action) {
@@ -196,5 +201,6 @@ export const { loginRequest,
     logoutSuccess, 
     logoutFail, 
     updateProfileFail, 
+    clearUpdateProfile,
     updateProfileSuccess, updateProfileRequest, updatePasswordFail, updatePasswordSuccess, updatePasswordRequest, forgotPasswordFail, forgotPasswordRequest, forgotPasswordSuccess, resetPasswordFail,resetPasswordRequest, resetPasswordSuccess} = actions;
 export default reducer;

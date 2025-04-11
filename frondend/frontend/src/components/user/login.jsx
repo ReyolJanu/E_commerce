@@ -30,7 +30,7 @@ function Login() {
             })
         }
         return
-    },[error, isAuthenticated, clearAuthError])
+    },[error, isAuthenticated, clearAuthError , navigate, dispatch])
 
     return (
         <Fragment>

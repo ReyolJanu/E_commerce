@@ -17,6 +17,8 @@ import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import ResetPassword from "./components/user/ResetPassword";
+import Summa from "./components/user/Summa";
+import Cart from "./components/cart/Cart";
 
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
           <ToastContainer />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/summa' element={<Summa />} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/search/:keyword' element={<ProductSearch />} />
             <Route path='/login' element={<Login />} />
@@ -42,6 +45,7 @@ function App() {
             <Route path='/myprofile/update/password' element={<ProtectedRoute> <UpdatePassword /> </ProtectedRoute>} />
             <Route path='/password/forgot' element={<ForgotPassword /> }/>
             <Route path='/password/reset/:token' element={<ResetPassword /> }/>
+            <Route path='/cart' element={<Cart /> }/>
           </Routes>
 
         </div>
