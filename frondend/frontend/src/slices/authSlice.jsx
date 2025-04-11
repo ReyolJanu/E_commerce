@@ -90,7 +90,8 @@ const authSlice = createSlice({
         updateProfileRequest(state, action) {
             return {
                 ...state,
-                loading: true
+                loading: true,
+                isUpdated:false
             }
         },
         updateProfileSuccess(state, action) {
@@ -102,6 +103,76 @@ const authSlice = createSlice({
             }
         },
         updateProfileFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        updatePasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true,
+                isUpdated:false
+            }
+        },
+        updatePasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isUpdated: true
+            }
+        },
+        updatePasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        forgotPasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true,
+                message:null
+            }
+        },
+        forgotPasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                message: action.payload.message
+            }
+        },
+        forgotPasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        updatePasswordFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        resetPasswordRequest(state, action) {
+            return {
+                ...state,
+                loading: true
+            }
+        },
+        resetPasswordSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isAuthenticated:true,
+                user:action.payload.user
+            }
+        },
+        resetPasswordFail(state, action) {
             return {
                 ...state,
                 loading: false,
@@ -119,5 +190,11 @@ export const { loginRequest,
     registerRequest,
     registerSuccess,
     registerFail,
-    loadUserRequest, loadUserSuccess, loadUserFail, logoutSuccess, logoutFail, updateProfileFail, updateProfileSuccess, updateProfileRequest } = actions;
+    loadUserRequest, 
+    loadUserSuccess, 
+    loadUserFail, 
+    logoutSuccess, 
+    logoutFail, 
+    updateProfileFail, 
+    updateProfileSuccess, updateProfileRequest, updatePasswordFail, updatePasswordSuccess, updatePasswordRequest, forgotPasswordFail, forgotPasswordRequest, forgotPasswordSuccess, resetPasswordFail,resetPasswordRequest, resetPasswordSuccess} = actions;
 export default reducer;
