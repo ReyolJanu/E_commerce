@@ -19,6 +19,8 @@ import ForgotPassword from "./components/user/ForgotPassword";
 import ResetPassword from "./components/user/ResetPassword";
 import Summa from "./components/user/Summa";
 import Cart from "./components/cart/Cart";
+import Shiping from "./components/cart/Shiping";
+import ConfirmOrder from "./components/cart/ConfirmOrder";
 
 function App() {
 
@@ -43,6 +45,8 @@ function App() {
             <Route path='/myprofile' element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
             <Route path='/myprofile/update' element={<ProtectedRoute> <UpdateProfile /> </ProtectedRoute>} />
             <Route path='/myprofile/update/password' element={<ProtectedRoute> <UpdatePassword /> </ProtectedRoute>} />
+            <Route path='/order/confirm' element={<ProtectedRoute> <ConfirmOrder /> </ProtectedRoute>} />
+            <Route path='/shipping' element={<ProtectedRoute> <Shiping /> </ProtectedRoute>} />
             <Route path='/password/forgot' element={<ForgotPassword /> }/>
             <Route path='/password/reset/:token' element={<ResetPassword /> }/>
             <Route path='/cart' element={<Cart /> }/>
