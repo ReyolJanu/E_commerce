@@ -16,7 +16,7 @@ export const validateShipping = (shippingInfo, navigate)=>{
 
 function Shiping() {
 
-    const { shippingInfo } = useSelector(state => state.cartState)
+    const { shippingInfo={} } = useSelector(state => state.cartState)
 
     const [address, setAddress] = useState(shippingInfo.address);
     const [city, setCity] = useState(shippingInfo.city);
