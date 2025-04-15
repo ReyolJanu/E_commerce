@@ -156,13 +156,13 @@ const authSlice = createSlice({
                 error: action.payload
             }
         },
-        updatePasswordFail(state, action) {
-            return {
-                ...state,
-                loading: false,
-                error: action.payload
-            }
-        },
+        // forgotPasswordFail(state, action) {
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         error: action.payload
+        //     }
+        // },
         resetPasswordRequest(state, action) {
             return {
                 ...state,

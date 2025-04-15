@@ -46,7 +46,7 @@ exports.newProduct = async (req, res, next) => {
 
 // Get Single Product - {{base_url}}/api/v1/product/id
 exports.getSingleProduct = async (req, res, next) => {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('reviews.user','name email');
 
     if (!product) {
         return next(new ErrorHandler('Product Not Found!', 404));  // Return a 404 error if the product is not found
@@ -100,14 +100,16 @@ exports.deleteProduct = async (req, res, next) => {
   };
   
 
-  // Create Review -- {{base_url}}/api/v1/review
+// Create Review -- {{base_url}}/api/v1/review
 exports.createReview = async (req, res, next) => {
   try {
     const { productId, rating, comment } = req.body;
+
+    // Ensure rating is a number
     const review = {
       user: req.user.id,
-      rating: rating,
-      comment: comment,
+      rating: Number(rating),
+      comment,
     };
 
     const product = await Product.findById(productId);
@@ -119,35 +121,33 @@ exports.createReview = async (req, res, next) => {
       });
     }
 
-    const isReviewed = product.reviews.find((review) => {
-      return review.user.toString() === req.user.id.toString();
-    });
+    const existingReview = product.reviews.find(
+      (rev) => rev.user && rev.user.toString() === req.user.id.toString()
+    );
+    
 
-    if (isReviewed) {
-      product.reviews.forEach((review) => {
-        if (review.user.toString() === req.user.id.toString()) {
-          review.comment = comment;
-          review.rating = rating;
-        }
-      });
+    if (existingReview) {
+      // Update existing review
+      existingReview.comment = comment;
+      existingReview.rating = Number(rating);
     } else {
+      // Add new review
       product.reviews.push(review);
       product.numOfReviews = product.reviews.length;
     }
 
-    // Calculate the average rating
-    product.ratings =
-      product.reviews.reduce((acc, review) => acc + review.rating, 0) /
-      product.reviews.length;
-    product.ratings = isNaN(product.ratings) ? 0 : product.ratings;
+    // Calculate average rating
+    const totalRating = product.reviews.reduce((acc, rev) => acc + rev.rating, 0);
+    product.ratings = product.reviews.length > 0 ? totalRating / product.reviews.length : 0;
 
     await product.save({ validateBeforeSave: false });
 
     res.status(200).json({
       success: true,
-      message: "Review added/updated successfully",
+      message: existingReview ? "Review updated successfully" : "Review added successfully",
     });
   } catch (error) {
+    console.error("Review error:", error); // Helpful for debugging
     res.status(500).json({
       success: false,
       message: "Server error",

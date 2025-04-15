@@ -7,6 +7,8 @@ import { validateShipping } from '../cart/Shiping';
 import { toast } from 'react-toastify';
 import { orderCompleted } from '../../slices/cartSlice';
 import axios from 'axios';
+import { createOrder } from '../../actions/orderActions';
+import { clearError as clearOrderError } from '../../slices/OrderSlice';
 
 function Payment() {
   const stripe = useStripe();
@@ -16,6 +18,8 @@ function Payment() {
   const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
   const { user } = useSelector(state => state.authState);
   const { items: cartItems, shippingInfo } = useSelector(state => state.cartState);
+  const { error: orderError } = useSelector(state => state.orderState);
+
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
     shipping: {
@@ -29,66 +33,74 @@ function Payment() {
       },
       phone: shippingInfo.phoneNo
     }
-  }
+  };
 
   const order = {
     orderItems: cartItems,
     shippingInfo
-  }
-  if (orderInfo) {
-    order.itemsPrice = orderInfo.itemsPrice,
-      order.shippingPrice = orderInfo.shippingPrice,
-      order.taxPrice = orderInfo.taxPrice,
-      order.totalPrice = orderInfo.totalPrice
-  }
+  };
 
+  if (orderInfo) {
+    order.itemsPrice = orderInfo.itemsPrice;
+    order.shippingPrice = orderInfo.shippingPrice;
+    order.taxPrice = orderInfo.taxPrice;
+    order.totalPrice = orderInfo.totalPrice;
+  }
 
   useEffect(() => {
-    validateShipping(shippingInfo, navigate)
-  })
+    validateShipping(shippingInfo, navigate);
+    if (orderError) {
+      toast(orderError, {
+        type: 'error',
+        onOpen: () => { dispatch(clearOrderError()) }
+      });
+    }
+    // It's a good idea to include the dependencies array for useEffect
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shippingInfo, navigate, orderError, dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     document.querySelector('#pay_btn').disabled = true;
+
     try {
-      const {data} = await axios.post('/api/v1/payment/process',paymentData);
-      const clientSecret = data.client_secret
-      const result = stripe.confirmCardPayment(clientSecret,{
-        payment_method:{
-          card:elements.getElement(CardNumberElement),
-          billing_details:{
-            name:user.name,
-            email:user.email
+      const { data } = await axios.post('/api/v1/payment/process', paymentData);
+      const clientSecret = data.client_secret;
+
+      // Await the confirmation result from Stripe
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardNumberElement),
+          billing_details: {
+            name: user.name,
+            email: user.email
           }
         }
-      })
+      });
 
-      if(result.error){
-        toast((await result).error.message,{
-          type:'error'
-        })
+      if (result.error) {
+        toast(result.error.message, { type: 'error' });
         document.querySelector('#pay_btn').disabled = false;
-      }else{
-        if((await result).paymentIntent.status === 'succeeded'){
-          toast("Payment Success!",{
-            type:'success'
-          })
+      } else {
+        if (result.paymentIntent.status === 'succeeded') {
+          toast("Payment Success!", { type: 'success' });
+          order.paymentInfo = {
+            id: result.paymentIntent.id,
+            status: result.paymentIntent.status
+          };
           dispatch(orderCompleted());
+          dispatch(createOrder(order));
           navigate('/order/success');
-        }else{
-          toast("Please Try Agian!",{
-            type:'warning'
-          })
+        } else {
+          toast("Please Try Again!", { type: 'warning' });
+          document.querySelector('#pay_btn').disabled = false;
         }
       }
-      
     } catch (error) {
       toast("Payment Failed: " + error.message, { type: 'error' });
       document.querySelector('#pay_btn').disabled = false;
     }
-    
-
-  }
+  };
 
   return (
     <div className="row wrapper">
@@ -122,7 +134,6 @@ function Payment() {
             />
           </div>
 
-
           <button
             id="pay_btn"
             type="submit"
@@ -130,11 +141,10 @@ function Payment() {
           >
             Pay -  {`$${orderInfo && orderInfo.totalPrice}`}
           </button>
-
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Payment
+export default Payment;

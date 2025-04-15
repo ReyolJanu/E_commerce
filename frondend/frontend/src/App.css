@@ -615,3 +615,7 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+
+.Toastify__toast-container {
+  z-index: 9999 !important;
+}
