@@ -16,6 +16,7 @@ const authSlice = createSlice({
         },
         loginSuccess(state, action) {
             return {
+                ...state,
                 loading: false,
                 isAuthenticated: true,
                 user: action.payload.user
@@ -25,7 +26,7 @@ const authSlice = createSlice({
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.payload || 'Something went'
             }
         },
         clearError(state, action) {

@@ -3,20 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const productsSlice = createSlice({
     name: 'products',
     initialState: {
-        loading: false,
-        product: {},
-        isReviewSubmitted: false
+        loading: false
     },
     reducers: {
         productsRequest(state, action) {
             return {
-                ...state,
                 loading: true
             }
         },
         productsSuccess(state, action) {
             return {
-                ...state,
                 loading: false,
                 products: action.payload.products,
                 productsCount: action.payload.count,
@@ -24,6 +20,23 @@ const productsSlice = createSlice({
             }
         },
         productsFail(state, action) {
+            return {
+                loading: false,
+                error: action.payload
+            }
+        },
+        adminProductsRequest(state, action) {
+            return {
+                loading: true
+            }
+        },
+        adminProductsSuccess(state, action) {
+            return {
+                loading: false,
+                products: action.payload.products
+            }
+        },
+        adminProductsFail(state, action) {
             return {
                 loading: false,
                 error: action.payload
@@ -49,11 +62,8 @@ const productsSlice = createSlice({
                 error: action.payload
             }
         },
-        clearReviewSubmitted(state, actions) {
-            return {
-                ...state,
-                isReviewSubmitted: false
-            }
+        clearReviewSubmitted(state) {
+            state.isReviewSubmitted = false;
         },
         clearError(state, action) {
             return {
@@ -69,7 +79,7 @@ const productsSlice = createSlice({
                 error: null
             }
         }
-        
+
     }
 });
 
@@ -82,5 +92,8 @@ export const { productsFail,
     createReviewSuccess,
     clearError,
     clearReviewSubmitted,
-    clearProduct } = actions;
+    clearProduct,
+    adminProductsFail,
+    adminProductsRequest,
+    adminProductsSuccess } = actions;
 export default reducer;

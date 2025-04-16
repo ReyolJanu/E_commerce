@@ -23,24 +23,26 @@ import Shiping from "./components/cart/Shiping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
 import Payment from "./components/cart/Payment";
 import axios from "axios";
-import {Elements} from '@stripe/react-stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./components/cart/OrderSuccess";
 import UserOrders from "./components/order/UserOrders";
 import OrderDetail from "./components/order/OrderDetail";
+import Dashboard from "./components/admin/Dashboard";
+import ProductList from "./components/admin/ProductList";
 
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     store.dispatch(loadUser)
-    async function getStripeApiKey(){
-      const {data} = await axios.get('/api/v1/stripeapi');
+    async function getStripeApiKey() {
+      const { data } = await axios.get('/api/v1/stripeapi');
       setStripeApiKey(data.stripeApiKey)
     }
     getStripeApiKey();
-  },[])
+  }, [])
 
   return (
     <Router>
@@ -65,14 +67,17 @@ function App() {
             <Route path='/orders' element={<ProtectedRoute> <UserOrders /> </ProtectedRoute>} />
             <Route path='/order/:id' element={<ProtectedRoute> <OrderDetail /> </ProtectedRoute>} />
             {stripeApiKey && <Route path='payment' element={<ProtectedRoute> <Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements> </ProtectedRoute>} />}
-            <Route path='/password/forgot' element={<ForgotPassword /> }/>
-            <Route path='/password/reset/:token' element={<ResetPassword /> }/>
-            <Route path='/cart' element={<Cart /> }/>
+            <Route path='/password/forgot' element={<ForgotPassword />} />
+            <Route path='/password/reset/:token' element={<ResetPassword />} />
+            <Route path='/cart' element={<Cart />} />
           </Routes>
 
         </div>
+        <Routes>
+          <Route path='/admin/dashboard' element={<ProtectedRoute isAdmin={true}> <Dashboard /> </ProtectedRoute>} />
+          <Route path='/admin/products' element={<ProtectedRoute isAdmin={true}> <ProductList /> </ProtectedRoute>} />
+        </Routes>
         <Footer />
-
       </div>
     </Router>
   )

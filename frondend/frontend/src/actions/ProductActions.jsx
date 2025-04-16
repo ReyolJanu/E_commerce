@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createReviewFail, createReviewRequest, createReviewSuccess, productsFail, productsRequest, productsSuccess } from '../slices/productSlice';
+import { adminProductsFail, adminProductsRequest, adminProductsSuccess, createReviewFail, createReviewRequest, createReviewSuccess, productsFail, productsRequest, productsSuccess } from '../slices/productSlice';
 import { productFail, productRequest, productSuccess } from '../slices/OneproductSlice';
 
 export const getProducts = (keyword,price,category,rating,currentPage) => async (dispatch) => {
@@ -59,5 +59,17 @@ export const createReview = (reviewData) => async (dispatch) => {
     const errorMessage =
       error?.response?.data?.message || error.message || 'Something went wrong';
     dispatch(createReviewFail(errorMessage));
+  }
+};
+
+
+
+export const getAdminProducts  = async (dispatch) => {
+  try {
+    dispatch(adminProductsRequest());
+    const {data} = await axios.get('/api/v1/admin/products');
+    dispatch(adminProductsSuccess(data));
+  } catch (error) {
+    dispatch(adminProductsFail(error.response?.data.message || error.message));
   }
 };

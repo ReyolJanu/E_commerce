@@ -532,6 +532,11 @@ footer {
   margin-right: 0.3rem;
 }
 
+#sidebar ul li div.dropdown-menu a{
+  color: #000000;
+
+}
+
 #sidebar ul li.active > a,
 a[aria-expanded='true'] {
   color: #fff;
