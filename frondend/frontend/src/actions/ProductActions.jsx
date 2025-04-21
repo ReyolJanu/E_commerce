@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { adminProductsFail, adminProductsRequest, adminProductsSuccess, createReviewFail, createReviewRequest, createReviewSuccess, productsFail, productsRequest, productsSuccess } from '../slices/productSlice';
-import { productFail, productRequest, productSuccess } from '../slices/OneproductSlice';
+import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProductFail, newProductRequest, newProductSuccess, productFail, productRequest, productSuccess } from '../slices/OneproductSlice';
 
 export const getProducts = (keyword,price,category,rating,currentPage) => async (dispatch) => {
    try {
@@ -71,5 +71,27 @@ export const getAdminProducts  = async (dispatch) => {
     dispatch(adminProductsSuccess(data));
   } catch (error) {
     dispatch(adminProductsFail(error.response?.data.message || error.message));
+  }
+};
+
+
+export const createNewProduct  = productData => async (dispatch) => {
+  try {
+    dispatch(newProductRequest());
+    const {data} = await axios.post('/api/v1/admin/product/new', productData);
+    dispatch(newProductSuccess(data));
+  } catch (error) {
+    dispatch(newProductFail(error.response?.data.message || error.message));
+  }
+};
+
+
+export const deleteProduct  = id => async (dispatch) => {
+  try {
+    dispatch(deleteProductRequest());
+    await axios.delete(`/api/v1/admin/product/${id}`);
+    dispatch(deleteProductSuccess());
+  } catch (error) {
+    dispatch(deleteProductFail(error.response?.data.message || error.message));
   }
 };

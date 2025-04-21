@@ -1,18 +1,29 @@
 const express = require('express');
 const { getProducts, newProduct, getSingleProduct, updateProduct, deleteProduct, createReview, getReviews, deleteReviews, getAdminProducts } = require('../controllers/productController');
-const {isAuthendicateUser, authorizeRoles} = require('../middleware/authendicate')
+const {isAuthendicateUser, authorizeRoles} = require('../middleware/authendicate');
+const multer = require('multer');
 const router = express.Router();
+const path = require('path');
+
+const upload = multer({storage: multer.diskStorage({
+    destination:function(req, file, cb){
+        cb(null, path.join(__dirname,'..', 'uploads/product'))
+    },
+    filename: function(req, file, cb){
+        cb(null, file.originalname)
+    }
+})})
 
 router.route('/products').get(getProducts);
 router.route('/product/:id').get(getSingleProduct);
 router.route('/product/:id').put(isAuthendicateUser, updateProduct);
-router.route('/product/:id').delete(isAuthendicateUser, deleteProduct);
 router.route('/review').put(isAuthendicateUser, createReview);
 router.route('/reviews').get(isAuthendicateUser, getReviews);
 router.route('/review').delete(isAuthendicateUser, deleteReviews);
 
 //  Admin 
-router.route('/admin/products/new').post(isAuthendicateUser, authorizeRoles('admin'), newProduct);
+router.route('/admin/product/new').post(isAuthendicateUser, authorizeRoles('admin'),upload.array('images'), newProduct);
 router.route('/admin/products').get(isAuthendicateUser, authorizeRoles('admin'), getAdminProducts);
+router.route('/admin/product/:id').delete(isAuthendicateUser, authorizeRoles('admin'), deleteProduct);
 
 module.exports = router;

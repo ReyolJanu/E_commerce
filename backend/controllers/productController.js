@@ -30,6 +30,14 @@ exports.getProducts = async (req, res, next) => {
 
 // Create Product - {{base_url}}/api/v1/admin/products/new
 exports.newProduct = async (req, res, next) => {
+  let images = []
+  if(req.files.length > 0){
+    req.files.forEach(file => {
+      let url = `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`;
+      images.push({image: url})
+    })
+  }
+  req.body.images = images;
     try {
         req.body.user = req.user.id;
         const product = await Product.create(req.body);

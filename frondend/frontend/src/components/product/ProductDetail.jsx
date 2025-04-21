@@ -8,6 +8,7 @@ import { Modal } from 'react-bootstrap'
 import { toast } from 'react-toastify';
 import { clearReviewSubmitted, clearError, clearProduct } from '../../slices/productSlice'
 import ProductReview from './ProductReview';
+import { Carousel } from 'react-bootstrap';
 
 export default function ProductDetail() {
     const [show, setShow] = useState(false);
@@ -82,16 +83,13 @@ export default function ProductDetail() {
                 <Fragment>
                     <div className="row f-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image" key={product._id}>
-                            {product.images && product.images.length > 0 ? (
-                                <img
-                                    src={product.images[0].image}
-                                    alt={product.name}
-                                    height="500"
-                                    width="500"
-                                />
-                            ) : (
-                                <p>No image available</p>
-                            )}
+                            <Carousel pause="hover">
+                                {product.images && product.images.length > 0 && product.images.map(image =>
+                                    <Carousel.Item key={image._id}>
+                                        <img className="d-block w-100" src={image.image} alt={product.name} height="500" width="500" />
+                                    </Carousel.Item>
+                                )}
+                            </Carousel>
                         </div>
 
 
@@ -108,7 +106,7 @@ export default function ProductDetail() {
 
                             <hr />
 
-                            <p id="product_price">$456.00</p>
+                            <p id="product_price">${product.price}</p>
                             <div className="stockCounter d-inline">
                                 <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
