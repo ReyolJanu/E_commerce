@@ -86,7 +86,7 @@ async function updateStock(productId, quantity) {
     product.save({ validateBeforeSave: false })
 }
 
-// Admin: Delete-Order -- 
+// Admin: Delete-Order -- api/v1/orders/:id
 exports.deleteOrder = async (req, res, next) => {
     const deleteOrder = await Order.findById(req.params.id);
     if (!deleteOrder) {

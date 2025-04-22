@@ -1,30 +1,32 @@
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 
 function Summa() {
-    const [nameList, setNameList] = useState([]);
-    const [name, setName] = useState("");
+    const [on , setOn] = useState(false);
+    const [name , setName] = useState("");
+    
 
-    const saveButton = ()=>{
-        setNameList([...nameList, name]);
-        setName("");
+    const testingBtn = () => {
+        if(on === true){
+            alert("hello");
+            setName("Jhon!")
+        }else{
+            alert('please tick the check box!') 
+        }
+    }
+
+    const checkBtn = (e) => {
+        setOn(e.target.checked)
     }
     return (
-        <div className='p-10'>
-            <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className='border-2 rounded-[5px]' />
-            <button onClick={saveButton} type='button' className='bg-green-500 border-1'>Add</button>
-            <div>
-                <span>
-                    {nameList.map((name, index) => {
-                       return <div key={index}>{name}</div>
-                    })}
+       
 
-                </span>
+            <div className='flex flex-col space-y-2'>
+                    <div><input type='checkbox' checked={on} onChange={checkBtn}/> <span>I accept this term and conditions</span></div>
+                    <Button onClick={testingBtn} disabled={!on} className='w-[100px]'>Confirm</Button>
+                    <input className='w-[150px] border-2 border-gray-500' value={name}/>
             </div>
 
-        </div>
     )
 }
 
