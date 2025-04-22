@@ -96,6 +96,7 @@ export default function ReviewList() {
                 type: 'success',
                 onOpen: () => dispatch(clearReviewDeleted())
             })
+            dispatch(getReviews(productId));
             return;
         }
     },[dispatch, error, isReviewDeleted])
