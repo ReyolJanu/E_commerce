@@ -7,22 +7,27 @@ const OneproductSlice = createSlice({
         product: {},
         isProductCreated: false,
         isProductDeleted: false,
-        isProductUpdated: false
+        isProductUpdated: false,
+        isReviewDeleted: false,
+        reviews:[]
     },
     reducers: {
         productRequest(state, action) {
             return {
+                ...state,
                 loading: true
             }
         },
         productSuccess(state, action) {
             return {
+                ...state,
                 loading: false,
                 product: action.payload.product
             }
         },
         productFail(state, action) {
             return {
+                ...state,
                 loading: false,
                 error: action.payload
             }
@@ -107,6 +112,52 @@ const OneproductSlice = createSlice({
                 ...state,
                 isProductUpdated: false
             }
+        },
+        reviewsRequest(state, action) {
+            return {
+                ...state,
+                loading: true
+            }
+        },
+        reviewsSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                reviews: action.payload.reviews
+            }
+        },
+        reviewsFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        deleteReviewRequest(state, action) {
+            return {
+                ...state,
+                loading: true
+            }
+        },
+        deleteReviewSuccess(state, action) {
+            return {
+                ...state,
+                loading: false,
+                isReviewDeleted: true
+            }
+        },
+        deleteReviewFail(state, action) {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        },
+        clearReviewDeleted(state, action) {
+            return {
+                ...state,
+                isReviewDeleted: false
+            }
         }
     }});
 
@@ -125,6 +176,13 @@ export const { productFail,
     updateProductFail,
     updateProductRequest,
     updateProductSuccess,
-    clearProductUpdated
+    clearProductUpdated,
+    reviewsRequest,
+    reviewsFail,
+    reviewsSuccess,
+    deleteReviewFail,
+    deleteReviewRequest,
+    deleteReviewSuccess,
+    clearReviewDeleted
 } = actions;
 export default reducer;
